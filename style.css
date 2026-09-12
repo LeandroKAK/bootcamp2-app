@@ -1,36 +1,109 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    font-family: Calibri, 'Segoe UI', sans-serif;
+    background-color: #22272e; /* Fundo acinzentado escuro */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    color: #ffffff;
 }
 
 .card {
-    background-color: white;
+    background-color: #1c2128;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 300px;
+    width: 320px;
+    border: 1px solid #30363d;
 }
 
 h1 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    color: #58a6ff; /* Tom azul */
+    margin-bottom: 1.5rem;
+}
+
+.busca-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #388bfd;
+    background-color: #0d1117;
+    color: #ffffff;
+    font-family: Calibri, sans-serif;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 8px rgba(88, 166, 255, 0.4);
+}
+
+.sugestoes-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.sugestao-item {
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #21262d;
+    color: #c9d1d9;
+}
+
+.sugestao-item:hover {
+    background-color: #1f6beb;
+    color: #ffffff;
+}
+
+.resultado-box {
+    background-color: #0d1117;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #1f6beb;
+}
+
+.cidade-nome {
+    font-size: 1.2rem;
+    color: #58a6ff;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .temperatura {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: bold;
-    color: #007bff;
+    color: #388bfd; /* Destaque azul */
     margin: 0.5rem 0;
 }
 
 .detalhes {
-    font-size: 0.9rem;
-    color: #666;
+    font-size: 1rem;
+    color: #8b949e;
+}
+
+.instrucao {
+    color: #8b949e;
+    font-size: 0.95rem;
 }

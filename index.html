@@ -8,8 +8,16 @@
 </head>
 <body>
     <div class="card">
-    <h1>Previsão com Open-Meteo</h1>
-    <div id="resultado">Carregando dados...</div>
+        <h1>Previsão com Open-Meteo</h1>
+        
+        <div class="busca-container">
+            <input type="text" id="inputCidade" placeholder="Digite uma cidade..." autocomplete="off">
+            <div id="sugestoes" class="sugestoes-box"></div>
+        </div>
+
+        <div id="resultado">
+            <p class="instrucao">Digite o nome de uma cidade acima para ver o clima em tempo real.</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
