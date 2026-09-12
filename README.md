@@ -17,7 +17,7 @@ Um aplicativo de previsão do tempo. Usando a API do Open Meteo o usuário poder
 
 ## Como executar localmente
 1. Clone: `git clone https://github.com/LeandroKAK/bootcamp2-app`
-2. Abra o arquivo `index.html` no navegador ou acesse o link: https://leandrokak.github.io/bootcamp2-app/
+2. Abra o arquivo `index.html`
 
 ## Links
 - **Aplicação no ar (GitHub Pages):** https://leandrokak.github.io/bootcamp2-app/
