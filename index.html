@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsão do Tempo</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <!-- Botão para abrir o menu de favoritos -->
+    <button id="btnMenu" class="menu-btn">☰ Favoritos</button>
+
+    <!-- Menu Lateral (Drawer) -->
+    <div id="sidebar" class="sidebar">
+        <button id="btnFechar" class="fechar-btn">&times;</button>
+        <h2>Cidades Salvas</h2>
+        <div id="listaFavoritos" class="lista-favoritos">
+            <p class="instrucao">Carregando favoritos...</p>
+        </div>
+    </div>
+
+    <!-- Container Principal -->
     <div class="card">
         <h1>Weather Reporter</h1>
-        
+
         <div class="busca-container">
             <input type="text" id="inputCidade" placeholder="Digite uma cidade..." autocomplete="off">
             <div id="sugestoes" class="sugestoes-box"></div>
@@ -21,5 +36,73 @@
     </div>
 
     <script src="script.js"></script>
+    <script type="module">
+        import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+        const supabase = createClient("https://ukocoibxzdvkkdwxcwwd.supabase.co", "sb_publishable_Q5ke_wMMiT4PpgLyWQhP7w_Pkv2ykFm");
+
+        // Identificador único da máquina/navegador do usuário
+        function obterOuCriarDeviceId() {
+            let deviceId = localStorage.getItem("weather_device_id");
+            if (!deviceId) {
+                deviceId = "device_" + crypto.randomUUID();
+                localStorage.setItem("weather_device_id", deviceId);
+            }
+            return deviceId;
+        }
+
+        const currentDeviceId = obterOuCriarDeviceId();
+
+        // CREATE — salvar favorito associado apenas A ESTA MÁQUINA
+        async function salvarFavorito(name) {
+            const { error } = await supabase.from("favorites").insert({
+                name_city: name,
+                user_device_id: currentDeviceId
+            });
+
+            if (error) {
+                console.error(error);
+                alert("Erro ao salvar favorito!");
+            } else {
+                listarFavoritos();
+            }
+        }
+
+        // READ — listar favoritos APENAS desta máquina
+        async function listarFavoritos() {
+            const { data, error } = await supabase
+                .from("favorites")
+                .select("*")
+                .eq("user_device_id", currentDeviceId)
+                .order("created_at");
+
+            if (!error && window.renderizarLista) {
+                window.renderizarLista(data);
+            } else if (error) {
+                console.error("Erro ao listar:", error);
+            }
+        }
+
+        // DELETE — remover favorito
+        async function removerFavorito(id) {
+            const { error } = await supabase
+                .from("favorites")
+                .delete()
+                .eq("id", id)
+                .eq("user_device_id", currentDeviceId);
+
+            if (!error) {
+                listarFavoritos();
+            } else {
+                console.error("Erro ao remover:", error);
+            }
+        }
+
+        window.salvarFavoritoDB = salvarFavorito;
+        window.removerFavoritoDB = removerFavorito;
+
+        listarFavoritos();
+    </script>
 </body>
+
 </html>

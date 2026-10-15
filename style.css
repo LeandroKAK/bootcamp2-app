@@ -1,75 +1,108 @@
+/* ===============================
+   RESET E LAYOUT PRINCIPAL
+   =============================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: Calibri, 'Segoe UI', sans-serif;
-    background-color: #22272e; /* Fundo acinzentado escuro */
+    font-family: 'Segoe UI', Calibri, sans-serif;
+    /* Fundo mais escuro e elegante (gradiente muito sutil) */
+    background: radial-gradient(circle at top, #1a202c 0%, #0d1117 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    color: #ffffff;
+    color: #e6edf3;
+    overflow-x: hidden;
+    /* Evita barra de rolagem horizontal por causa do menu */
 }
 
+/* ===============================
+   CARTÃO CENTRAL (WEATHER REPORTER)
+   =============================== */
 .card {
-    background-color: #1c2128;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    background-color: #161b22;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
     text-align: center;
-    width: 320px;
+    width: 90%;
+    max-width: 380px;
     border: 1px solid #30363d;
+    position: relative;
+    /* Mantém o conteúdo isolado do menu */
+    z-index: 10;
 }
 
 h1 {
-    font-size: 1.6rem;
-    color: #58a6ff; /* Tom azul */
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #58a6ff;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.5px;
 }
 
+/* ===============================
+   BARRA DE BUSCA
+   =============================== */
 .busca-container {
     position: relative;
     margin-bottom: 1.5rem;
+    width: 100%;
 }
 
 input {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #388bfd;
-    background-color: #0d1117;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    background-color: #010409;
     color: #ffffff;
-    font-family: Calibri, sans-serif;
+    font-family: inherit;
     font-size: 1rem;
-    box-sizing: border-box;
     outline: none;
+    transition: all 0.2s ease;
+    text-align: center;
+    /* Centraliza o texto digitado na barra */
 }
 
 input:focus {
     border-color: #58a6ff;
-    box-shadow: 0 0 8px rgba(88, 166, 255, 0.4);
+    box-shadow: 0 0 12px rgba(88, 166, 255, 0.2);
+    background-color: #0d1117;
 }
 
+/* ===============================
+   CAIXA DE SUGESTÕES
+   =============================== */
 .sugestoes-box {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     left: 0;
     right: 0;
     background-color: #161b22;
     border: 1px solid #30363d;
-    border-top: none;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    max-height: 180px;
+    border-radius: 10px;
+    max-height: 200px;
     overflow-y: auto;
-    z-index: 10;
+    z-index: 20;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .sugestao-item {
-    padding: 10px;
+    padding: 12px 16px;
     text-align: left;
     cursor: pointer;
     font-size: 0.95rem;
     border-bottom: 1px solid #21262d;
     color: #c9d1d9;
+    transition: background 0.2s;
+}
+
+.sugestao-item:last-child {
+    border-bottom: none;
 }
 
 .sugestao-item:hover {
@@ -77,33 +110,182 @@ input:focus {
     color: #ffffff;
 }
 
+/* ===============================
+   RESULTADO DO CLIMA
+   =============================== */
 .resultado-box {
-    background-color: #0d1117;
-    padding: 1.2rem;
-    border-radius: 12px;
-    border: 1px solid #1f6beb;
+    background-color: #010409;
+    padding: 1.5rem;
+    border-radius: 14px;
+    border: 1px solid #30363d;
+    margin-top: 1rem;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .cidade-nome {
-    font-size: 1.2rem;
-    color: #58a6ff;
+    font-size: 1.3rem;
+    color: #e6edf3;
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
 .temperatura {
-    font-size: 2.8rem;
+    font-size: 3.5rem;
     font-weight: bold;
-    color: #388bfd; /* Destaque azul */
+    color: #58a6ff;
     margin: 0.5rem 0;
 }
 
 .detalhes {
     font-size: 1rem;
     color: #8b949e;
+    margin-bottom: 1rem;
 }
 
 .instrucao {
     color: #8b949e;
     font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ===============================
+   MENU LATERAL E BOTÕES
+   =============================== */
+.menu-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background-color: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+    z-index: 50;
+}
+
+.menu-btn:hover {
+    border-color: #8b949e;
+    color: #ffffff;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100vh;
+    background-color: #0d1117;
+    border-left: 1px solid #30363d;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    padding: 24px;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.sidebar.aberta {
+    right: 0;
+}
+
+.sidebar h2 {
+    color: #e6edf3;
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 12px;
+}
+
+.fechar-btn {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.fechar-btn:hover {
+    color: #f85149;
+}
+
+.favorito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161b22;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #30363d;
+    transition: transform 0.2s;
+}
+
+.favorito-item:hover {
+    transform: translateX(-4px);
+    border-color: #58a6ff;
+}
+
+.favorito-nome {
+    color: #c9d1d9;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.favorito-nome:hover {
+    color: #58a6ff;
+}
+
+.btn-remover {
+    background-color: transparent;
+    color: #f85149;
+    border: 1px solid #f85149;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-remover:hover {
+    background-color: #f85149;
+    color: white;
+}
+
+.btn-salvar {
+    background-color: #238636;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-salvar:hover {
+    background-color: #2ea043;
 }

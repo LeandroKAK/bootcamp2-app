@@ -14,6 +14,7 @@ Um aplicativo de previsão do tempo. Usando a API do Open Meteo o usuário poder
 
 ## Funcionalidades
 - Digite o nome de uma cidade, o APP completa o nome e especifica país mesmo não escrito perfeitamente
+- Uma aba de favoritos, o app tem a opção de salvar cidades com base no seu navegador atual, eles ficaram salvos mesmo após fechar o navegador em um banco de dados no Supabase.
 
 ## Como executar localmente
 1. Clone: `git clone https://github.com/LeandroKAK/bootcamp2-app`
